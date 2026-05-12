@@ -1,0 +1,499 @@
+/* =====================
+   VARIABLES & RESET
+   ===================== */
+:root {
+  --bg:        #0e1e1e;
+  --bg-card:   #162828;
+  --bg-section:#122020;
+  --accent:    #c97a2a;
+  --accent-soft:#d4924a;
+  --teal:      #2a6b6b;
+  --teal-light:#3d8a8a;
+  --text:      #e8ddd0;
+  --text-muted:#8aada8;
+  --border:    #1e3838;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =====================
+   HEADER
+   ===================== */
+.hdr {
+  position: relative;
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.hdr-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,122,42,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hdr-content { position: relative; }
+
+.logo-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent) 0deg, #b8864a 90deg, var(--teal) 180deg, #1a5050 360deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.4rem;
+  animation: spinIn 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+.logo-inner {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: #122020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.logo-fish  { font-size: 1.9rem; }
+.logo-name  { font-size: 0.78rem; font-weight: 900; color: #e8ddd0; letter-spacing: 2px; }
+.logo-sub   { font-size: 0.42rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+
+.hdr h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+  animation: fadeUp 0.6s 0.2s both;
+}
+
+.hdr h1 span { color: var(--accent); }
+
+.chips {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.35s both;
+}
+
+.chip {
+  background: transparent;
+  color: var(--accent-soft);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 5px 13px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  border: 1px solid rgba(201,122,42,0.5);
+}
+
+/* =====================
+   HORARIO
+   ===================== */
+.hours-bar {
+  background: var(--accent);
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0e1e1e;
+  letter-spacing: 0.5px;
+}
+
+.hours-bar .ti { font-size: 16px; }
+
+/* =====================
+   NAV STICKY
+   ===================== */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(14,30,30,0.97);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.sticky-nav::-webkit-scrollbar { display: none; }
+
+.nav-pill {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.9rem 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  border-radius: 0;
+  position: relative;
+}
+
+.nav-pill::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px 2px 0 0;
+  transition: transform var(--transition);
+}
+
+.nav-pill:hover { color: var(--text); }
+
+.nav-pill.active {
+  color: var(--accent);
+}
+
+.nav-pill.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* =====================
+   SECCIONES
+   ===================== */
+.section {
+  padding: 2rem 1.2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-label {
+  font-size: 0.58rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 1.2rem;
+}
+
+/* =====================
+   LO QUE OFRECEMOS
+   ===================== */
+.offer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ocard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 0.9rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+  user-select: none;
+}
+
+.ocard:active {
+  transform: scale(0.96);
+  background: #1c3535;
+  border-color: var(--accent);
+}
+
+.ocard-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.ocard h3 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+}
+
+.ocard p {
+  font-size: 0.67rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* =====================
+   SERVICIOS
+   ===================== */
+.svc-grid { display: flex; flex-direction: column; gap: 10px; }
+
+.svc-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+  user-select: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.svc-card:active {
+  transform: scale(0.98);
+  border-color: var(--accent);
+  background: #1c3535;
+}
+
+.svc-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #0e2424;
+  border: 1.5px solid var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal-light);
+  font-size: 20px;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.svc-card.svc-whatsapp .svc-icon {
+  border-color: #3a8a5a;
+  color: #5ab87a;
+}
+
+.svc-card:active .svc-icon {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.svc-info { flex: 1; }
+
+.svc-info h3 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.svc-info p {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.svc-arrow {
+  color: var(--border);
+  font-size: 18px;
+  transition: transform var(--transition), color var(--transition);
+}
+
+.svc-card:hover .svc-arrow {
+  transform: translateX(3px);
+  color: var(--accent);
+}
+
+/* =====================
+   NOSOTROS / STATS
+   ===================== */
+.about-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 1.4rem;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 0.4rem;
+  text-align: center;
+}
+
+.stat-n {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--accent-soft);
+  line-height: 1;
+}
+
+.stat-l {
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* =====================
+   CONTACTO
+   ===================== */
+.contact-cards { display: flex; flex-direction: column; gap: 10px; }
+
+.contact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.contact-card:active {
+  transform: scale(0.98);
+  border-color: var(--accent);
+  background: #1c3535;
+}
+
+.contact-card .ti:first-child {
+  font-size: 22px;
+  color: var(--teal-light);
+  flex-shrink: 0;
+}
+
+.contact-card.contact-wa .ti:first-child { color: #5ab87a; }
+
+.contact-card span { flex: 1; }
+
+.contact-ext {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+.ftr {
+  background: var(--bg-section);
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+}
+
+.ftr-logo {
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+.ftr-logo span { color: var(--accent); }
+
+.ftr-copy {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* =====================
+   TOAST
+   ===================== */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1c3535;
+  border: 1px solid var(--accent);
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border-radius: 30px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  white-space: nowrap;
+  z-index: 999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* =====================
+   ANIMACIONES
+   ===================== */
+@keyframes spinIn {
+  from { transform: rotate(-90deg) scale(0.5); opacity: 0; }
+  to   { transform: rotate(0deg)   scale(1);   opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================
+   DESKTOP (centrado)
+   ===================== */
+@media (min-width: 480px) {
+  body { border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+}
