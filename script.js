@@ -3,7 +3,7 @@
 // =====================
 
 // --- CONFIGURACIÓN ---
-const WHATSAPP_NUMBER = '6675761167'; // Cambia al número real
+const WHATSAPP_NUMBER = '526675761167'; // Cambia al número real
 const WHATSAPP_MSG    = encodeURIComponent('Hola, quiero hacer un pedido en Frank Salmón 🐟');
 
 // --- NAV PILLS → scroll a sección ---
