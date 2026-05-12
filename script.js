@@ -99,7 +99,10 @@ document.getElementById('svc-recoja').addEventListener('click', () => {
 });
 
 document.getElementById('svc-whatsapp').addEventListener('click', () => {
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`, '_blank');
+  window.open(
+    `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${WHATSAPP_MSG}`,
+    '_blank'
+  );
 });
 
 // --- TARJETAS menú: feedback táctil ---
